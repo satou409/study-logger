@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <title>Study Logger</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Noto+Sans+JP:wght@400;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="./src/style.css" />
+    <!-- MSAL.js CDN -->
+    <script src="https://alcdn.msauth.net/browser/2.30.0/js/msal-browser.min.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <div class="glass-container">
+
+            <!-- Login Section -->
+            <div id="login-section" class="section">
+                <h1>Study Logger</h1>
+                <p class="subtitle">記録を開始するにはログインしてください</p>
+                <button id="signIn" class="btn primary-btn">
+                    Microsoftでログイン
+                </button>
+            </div>
+
+            <!-- Main Action Section -->
+            <div id="action-section" class="section hidden">
+                <div class="status-indicator ready">
+                    <div class="pulse-ring"></div>
+                    <span class="icon">✨</span>
+                </div>
+                <h2 id="welcome-msg">こんにちは</h2>
+                <p class="instruction">現在の時刻を記録します</p>
+
+                <button id="log-now" class="btn large-btn">
+                    記録する
+                </button>
+
+                <div style="margin-top: 10px;">
+                    <button id="logout-btn" class="btn"
+                        style="background: transparent; border: 1px solid #ddd; color: #fff; font-size: 0.8rem; padding: 8px 16px;">
+                        別のアカウントでログイン
+                    </button>
+                </div>
+
+                <div style="margin-top: 20px;">
+                    <button id="debug-btn" class="btn" style="background: #f3f4f6; color: #333; font-size: 0.8rem;">
+                        🛠️ デバッグ: ファイルとテーブルを確認
+                    </button>
+                </div>
+            </div>
+
+            <!-- Loading / Success Section -->
+            <div id="status-section" class="section hidden">
+                <div id="spinner" class="spinner"></div>
+                <div id="success-icon" class="success-icon hidden">✓</div>
+                <h3 id="status-text">処理中...</h3>
+            </div>
+
+        </div>
+
+        <!-- Log Output (for debug/history) -->
+        <div id="console-log" class="console hidden"></div>
+        <div id="error-msg" class="console hidden" style="color: #ff6b6b;"></div>
+    </div>
+
+    <!-- Main Script -->
+    <script src="./src/main.js"></script>
+</body>
+
+</html>
