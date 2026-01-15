@@ -15,8 +15,8 @@ const msalConfig = {
         redirectUri: window.location.origin + window.location.pathname.replace(/\/$/, "").replace("/index.html", ""),
     },
     cache: {
-        cacheLocation: "sessionStorage",
-        storeAuthStateInCookie: false,
+        cacheLocation: "localStorage", // sessionStorageから変更（ブラウザを閉じても維持）
+        storeAuthStateInCookie: true, // Safari/iOSでの対策としてCookieを使用
     }
 };
 
@@ -56,9 +56,11 @@ function initializeMsal() {
             .catch(err => {
                 console.error(err);
                 showError("初期化エラー: " + err);
+                alert("認証処理でエラー: " + err); // スマホ用に追加
             });
     } catch (e) {
-        showError("MSAL初期化失敗。Client IDが設定されているか確認してください。詳細: " + e);
+        showError("MSAL初期化失敗: " + e);
+        alert("初期化失敗: " + e); // スマホ用に追加
     }
 }
 
